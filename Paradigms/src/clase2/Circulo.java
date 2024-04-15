@@ -2,7 +2,13 @@ package clase2;
 
 public class Circulo {
 	//atributes
-	private double radio;
+	private double radio = 0;
+	
+	//constructor
+	public Circulo(double r)
+	{
+		this.radio = r;
+	}
 	
 	//getters
 	public double obtenerRadio() { return this.radio; }
