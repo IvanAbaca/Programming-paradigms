@@ -2,19 +2,27 @@ package clase2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CerraduraTests {
 
-	Cerradura c = new Cerradura(1,3);
+	Cerradura c;
+	
+	@BeforeEach
+	public void setup()
+	{
+		c = new Cerradura(1,3);
+	}
 	
 	@Test
 	void testabrirSinFallos(){
 		//Arrange
 		//Act
 		c.abrir(1);
+		c.abrir(1); //Re-intento de apertura
 		//Assert
-		assertEquals(c.estaAbierta(), true); //Abre la puerta
+		assertTrue(c.estaAbierta()); //Abre la puerta
 		assertEquals(c.contarAperturasExitosas(), 1);
 		assertEquals(c.contarAperturasFallidas(), 0);
 	}
@@ -28,7 +36,7 @@ class CerraduraTests {
 		c.abrir(1); //Intento exitoso
 		
 		//Assert
-		assertEquals(c.estaAbierta(), true); //Abre la puerta despues de un intento fallido
+		assertTrue(c.estaAbierta()); //Abre la puerta despues de un intento fallido
 		assertEquals(c.contarAperturasExitosas(), 1);
 		assertEquals(c.contarAperturasFallidas(), 1);
 	}
@@ -42,7 +50,7 @@ class CerraduraTests {
 		c.abrir(1); //Intento exitoso
 		
 		//Assert
-		assertEquals(c.estaAbierta(), true); //Abre la puerta despues de dos intentos fallidos
+		assertTrue(c.estaAbierta()); //Abre la puerta despues de dos intentos fallidos
 		assertEquals(c.contarAperturasExitosas(), 1);
 		assertEquals(c.contarAperturasFallidas(), 2);
 	}
@@ -53,11 +61,11 @@ class CerraduraTests {
 		//Arrange
 		//Act
 		c.abrir(2); c.abrir(2);	c.abrir(2); //3 Intentos fallidos
-		assertEquals(c.abrir(1), false); //Intento exitoso
+		assertFalse(c.abrir(1)); //Intento exitoso
 		
 		//Assert
-		assertEquals(c.estaCerrada(), true); //Intenta abrir la puerta despues de tres intentos fallidos pero no puede
-		assertEquals(c.fueBloqueada(), true); //Intenta abrir la puerta despues de tres intentos fallidos pero no puede
+		assertTrue(c.estaCerrada()); //Intenta abrir la puerta despues de tres intentos fallidos pero no puede
+		assertTrue(c.fueBloqueada()); //Intenta abrir la puerta despues de tres intentos fallidos pero no puede
 		assertEquals(c.contarAperturasExitosas(), 0);
 		assertEquals(c.contarAperturasFallidas(), 3);
 	}
@@ -74,8 +82,8 @@ class CerraduraTests {
 		c.abrir(2); //Si no me reseteó los intentos, entonces este intento deberia bloquear la apertura
 		c.abrir(1); //Intento exitoso
 		//Assert
-		assertEquals(c.estaAbierta(), true); //La puerta fue abierta porque no se bloqueó
-		assertEquals(c.fueBloqueada(), false); //No se bloqueó por el reseteo de intentos
+		assertTrue(c.estaAbierta()); //La puerta fue abierta porque no se bloqueó
+		assertFalse(c.fueBloqueada()); //No se bloqueó por el reseteo de intentos
 		assertEquals(c.contarAperturasExitosas(), 2);
 		assertEquals(c.contarAperturasFallidas(), 3);
 	}
