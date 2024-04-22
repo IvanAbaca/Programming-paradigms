@@ -7,6 +7,19 @@ public class Punto {
 	private double x = 0;
 	private double y = 0;
 	
+	//constructor
+	public Punto()
+	{
+		this.x = 0;
+		this.y = 0;
+	}
+	
+	public Punto(double x, double y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	
 	//methods
 	public boolean estaSobreEjeX() { return this.y == 0; } 
 	public boolean estaSobreEjeY() { return this.x == 0; }
