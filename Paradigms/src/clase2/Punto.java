@@ -2,7 +2,7 @@ package clase2;
 
 import java.util.Objects;
 
-public class Punto {
+public class Punto implements Comparable<Punto>{
 	//Atributes
 	private double x = 0;
 	private double y = 0;
@@ -29,14 +29,14 @@ public class Punto {
 		return this.estaSobreEjeX() && this.estaSobreEjeY();
 	}
 	
-	public double distanciaAlOrigen() 
+	public Double distanciaAlOrigen() 
 	{ 
-		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+		return Math.hypot(x, y);
 	}
 	
 	public double distanciaAotroPunto(Punto otro)
 	{
-		return Math.sqrt(Math.pow(this.x-otro.x, 2)+Math.pow(this.y-otro.y, 2));
+		return Math.hypot(x-otro.x, y-otro.y);
 	}
 	
 	//Getters and setters
@@ -61,4 +61,12 @@ public class Punto {
 		return Double.doubleToLongBits(x) == Double.doubleToLongBits(other.x)
 				&& Double.doubleToLongBits(y) == Double.doubleToLongBits(other.y);
 	}
+
+	@Override
+	public int compareTo(Punto o) {
+		int cmp = this.distanciaAlOrigen().compareTo(o.distanciaAlOrigen());
+		return cmp!=0?cmp:this.x>=o.x?1:-1;
+	}
+	
+	
 }
