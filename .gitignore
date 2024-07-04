@@ -1,0 +1,10 @@
+
+.metadata/.lock
+.metadata/.log
+.metadata/.mylyn/.taskListIndex/segments_1
+.metadata/.mylyn/.taskListIndex/write.lock
+.metadata/.mylyn/.tasks.xml.zip
+.metadata/.mylyn/repositories.xml.zip
+.metadata/.mylyn/tasks.xml.zip
+/.metadata
+Paradigms/.project
